@@ -53,11 +53,18 @@ gradlePlugin {
     }
 }
 
+publishing {
+    publications.create<MavenPublication>("maven") {
+        artifactId = rootProject.name
+    }
+}
+
 pluginBundle {
     website = "https://github.com/elect86/lwjgl"
     vcsUrl = "https://github.com/elect86/lwjgl"
     tags = listOf("lwjgl", "gradle", "dependency", "easy", "management")
 }
+
 
 // Add a source set for the functional test suite
 //val functionalTestSourceSet = sourceSets.create("functionalTest") {
