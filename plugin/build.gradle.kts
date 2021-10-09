@@ -43,6 +43,12 @@ dependencies {
 group = "com.github.elect86"
 version = "0.0.2"
 
+publishing {
+    publications.create<MavenPublication>("maven") {
+        artifactId = rootProject.name
+    }
+}
+
 gradlePlugin {
     // Define the plugin
     plugins.create("lwjgl") {
@@ -50,12 +56,6 @@ gradlePlugin {
         displayName = "Lwjgl Gradle util"
         description = "Easier Lwjgl dependency management"
         implementationClass = "main.LwjglPlugin"
-    }
-}
-
-publishing {
-    publications.create<MavenPublication>("maven") {
-        artifactId = rootProject.name
     }
 }
 
