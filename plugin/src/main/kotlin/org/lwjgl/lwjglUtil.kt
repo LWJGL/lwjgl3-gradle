@@ -9,6 +9,7 @@ object Lwjgl {
 
     var group = "org.lwjgl"
     var version = "3.2.3"
+    var allNatives = false
 
     operator fun invoke(block: Lwjgl.() -> Unit) = Lwjgl.block()
 
@@ -20,7 +21,7 @@ object Lwjgl {
 
     private fun DependencyHandler.implementation(test: Boolean, modules: Array<out Module>) {
         // core
-        if(core !in modules)
+        if (core !in modules)
             implementation(test, core)
         for (module in modules)
             implementation(test, module)
@@ -31,12 +32,18 @@ object Lwjgl {
         add(config, "$group:${module.artifact}")
         if (module.hasNative) {
             config = if (test) "testRuntimeOnly" else "runtimeOnly"
-            addExternalModuleDependencyTo(this, config, group, module.artifact, version, null, natives, null, null)
+            if (allNatives)
+                for (native in allNative)
+                    addExternalModuleDependencyTo(this, config, group, module.artifact, version,
+                                                  null, native, null, null)
+            else
+                addExternalModuleDependencyTo(this, config, group, module.artifact, version,
+                                              null, native, null, null)
         }
     }
 
     enum class Module(val hasNative: Boolean = true) {
-
+        /** This can be skipped */
         core,
 
         assimp,
@@ -81,8 +88,8 @@ object Lwjgl {
         zstd;
 
         val artifact: String
-            get() = when(this) {
-                core -> "lwjgl"
+            get() = when (this) {
+                core -> "org/lwjgl"
                 else -> "lwjgl-$name"
             }
     }
@@ -96,9 +103,23 @@ object Lwjgl {
         minimalVulkan(arrayOf(core, assimp, glfw, openal, stb, vulkan))
     }
 
-    val natives = "natives-" + when (current()) {
-        WINDOWS -> "windows"
-        LINUX -> "linux"
-        else -> "macos"
+    val native by lazy {
+        val os = System.getProperty("os.arch")
+        val aarch64 = os.startsWith("aarch64")
+        "natives-" + when (current()) {
+            LINUX -> "linux" + when {
+                os.startsWith("arm") || aarch64 -> '-' + if ("64" in os || os.startsWith("armv8")) "arm64" else "arm32"
+                else -> ""
+            }
+            MAC_OS -> "macos" + if (aarch64) "-arm64" else ""
+            WINDOWS -> "windows" + when {
+                "64" in os -> if (aarch64) "-arm64" else ""
+                else -> "-x86"
+            }
+            else -> error("Unrecognized or unsupported Operating system. Please set `lwjglNatives` manually")
+        }
     }
+    private val allNative = listOf("linux-arm64", "linux-arm32", "linux",
+                                   "macos-arm64", "macos",
+                                   "windows-arm64", "windows", "windows-x86")
 }
