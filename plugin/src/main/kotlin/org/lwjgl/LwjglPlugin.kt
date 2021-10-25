@@ -1,5 +1,6 @@
-package main
+package org.lwjgl
 
+import main.Lwjgl
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Property

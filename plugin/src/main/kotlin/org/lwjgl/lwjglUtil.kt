@@ -7,7 +7,9 @@ import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
 
 object Lwjgl {
 
-    var group = "org.lwjgl"
+    val release = Release
+    val snapshot = Snapshot
+    val group = "org.lwjgl"
     var version = "3.2.3"
     var allNatives = false
 
@@ -122,4 +124,18 @@ object Lwjgl {
     private val allNative = listOf("linux-arm64", "linux-arm32", "linux",
                                    "macos-arm64", "macos",
                                    "windows-arm64", "windows", "windows-x86")
+}
+
+object Release {
+    val `3_2_3`: Unit
+        get() {
+            Lwjgl.version = "3.2.3"
+        }
+}
+
+object Snapshot {
+    val `3_3_0`: Unit
+        get() {
+            Lwjgl.version = "3.3.0-SNAPSHOT"
+        }
 }
