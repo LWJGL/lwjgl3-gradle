@@ -127,9 +127,53 @@ object Lwjgl {
 }
 
 object Release {
+    val latest: Unit
+        get() {
+            `3_2_3`
+        }
     val `3_2_3`: Unit
         get() {
             Lwjgl.version = "3.2.3"
+        }
+    val `3_2_2`: Unit
+        get() {
+            Lwjgl.version = "3.2.2"
+        }
+    val `3_2_1`: Unit
+        get() {
+            Lwjgl.version = "3.2.1"
+        }
+    val `3_2_0`: Unit
+        get() {
+            Lwjgl.version = "3.2.0"
+        }
+    val `3_1_6`: Unit
+        get() {
+            Lwjgl.version = "3.1.6"
+        }
+    val `3_1_5`: Unit
+        get() {
+            Lwjgl.version = "3.1.5"
+        }
+    val `3_1_4`: Unit
+        get() {
+            Lwjgl.version = "3.1.4"
+        }
+    val `3_1_3`: Unit
+        get() {
+            Lwjgl.version = "3.1.3"
+        }
+    val `3_1_2`: Unit
+        get() {
+            Lwjgl.version = "3.1.2"
+        }
+    val `3_1_1`: Unit
+        get() {
+            Lwjgl.version = "3.1.1"
+        }
+    val `3_1_0`: Unit
+        get() {
+            Lwjgl.version = "3.1.0"
         }
 }
 
