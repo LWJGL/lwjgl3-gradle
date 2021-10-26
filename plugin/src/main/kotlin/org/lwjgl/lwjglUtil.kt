@@ -29,6 +29,14 @@ object Lwjgl {
             implementation(test, module)
     }
 
+    private fun DependencyHandler.implementation(test: Boolean, modules: Collection<Module>) {
+        // core
+        if (core !in modules)
+            implementation(test, core)
+        for (module in modules)
+            implementation(test, module)
+    }
+
     private fun DependencyHandler.implementation(test: Boolean, module: Module) {
         var config = if (test) "testImplementation" else "implementation"
         add(config, "$group:${module.artifact}")
@@ -96,13 +104,13 @@ object Lwjgl {
             }
     }
 
-    enum class Preset(val modules: Array<Module>) {
-        none(emptyArray<Module>()),
-        everything(Module.values()),
-        gettingStarted(arrayOf(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan)),
-        minimalOpenGL(arrayOf(core, assimp, glfw, openal, opengl, stb)),
-        minimalOpenGLES(arrayOf(core, assimp, egl, glfw, openal, opengles, stb)),
-        minimalVulkan(arrayOf(core, assimp, glfw, openal, stb, vulkan))
+    enum class Preset(val modules: ArrayList<Module>) {
+        none(arrayListOf<Module>()),
+        everything(Module.values().toCollection(ArrayList())),
+        gettingStarted(arrayListOf(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan)),
+        minimalOpenGL(arrayListOf(core, assimp, glfw, openal, opengl, stb)),
+        minimalOpenGLES(arrayListOf(core, assimp, egl, glfw, openal, opengles, stb)),
+        minimalVulkan(arrayListOf(core, assimp, glfw, openal, stb, vulkan))
     }
 
     val native by lazy {

@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
     // Align versions of all Kotlin components
-    implementation(platform(kotlin("bom")))
+    implementation(platform(kotlin("bom", embeddedKotlinVersion)))
 
     // Use the Kotlin JDK 8 standard library.
     implementation(kotlin("stdlib-jdk8"))
@@ -40,8 +40,8 @@ dependencies {
     testImplementation(kotlin("test-junit"))
 }
 
-group = "com.github.elect86"
-version = "0.0.11"
+group = "org.lwjgl"
+version = "0.0.12"
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -52,7 +52,7 @@ publishing {
 gradlePlugin {
     // Define the plugin
     plugins.create("lwjgl") {
-        id = "elect86.lwjgl"
+        id = "org.lwjgl.plugin"
         displayName = "Lwjgl Gradle util"
         description = "Easier Lwjgl dependency management"
         implementationClass = "main.LwjglPlugin"
@@ -60,8 +60,8 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://github.com/elect86/lwjgl"
-    vcsUrl = "https://github.com/elect86/lwjgl"
+    website = "https://github.com/LWJGL/lwjgl3-gradle"
+    vcsUrl = "https://github.com/LWJGL/lwjgl3-gradle"
     tags = listOf("lwjgl", "gradle", "dependency", "easy", "management")
 }
 
