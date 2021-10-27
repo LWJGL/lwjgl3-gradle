@@ -99,7 +99,7 @@ object Lwjgl {
 
         val artifact: String
             get() = when (this) {
-                core -> "org/lwjgl"
+                core -> "lwjgl"
                 else -> "lwjgl-$name"
             }
     }
