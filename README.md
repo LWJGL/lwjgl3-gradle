@@ -110,3 +110,16 @@ Lwjgl {
    snapshot
 }
 ```
+
+`Preset`s are `ArrayList`s in oder to give the option to modify them as you wish
+
+```kotlin
+    enum class Preset(val modules: ArrayList<Module>) {
+        none(arrayListOf<Module>()),
+        everything(Module.values().toCollection(ArrayList())),
+        gettingStarted(arrayListOf(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan)),
+        minimalOpenGL(arrayListOf(core, assimp, glfw, openal, opengl, stb)),
+        minimalOpenGLES(arrayListOf(core, assimp, egl, glfw, openal, opengles, stb)),
+        minimalVulkan(arrayListOf(core, assimp, glfw, openal, stb, vulkan))
+    }
+```
