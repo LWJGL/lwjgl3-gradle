@@ -41,7 +41,7 @@ dependencies {
 }
 
 group = "org.lwjgl"
-version = "0.0.12"
+version = "0.0.13"
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -55,7 +55,7 @@ gradlePlugin {
         id = "org.lwjgl.plugin"
         displayName = "Lwjgl Gradle util"
         description = "Easier Lwjgl dependency management"
-        implementationClass = "main.LwjglPlugin"
+        implementationClass = "org.lwjgl.LwjglPlugin"
     }
 }
 
