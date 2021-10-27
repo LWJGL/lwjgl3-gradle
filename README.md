@@ -92,12 +92,21 @@ dependencies {
 becomes
 
 ```kotlin
-
-dependencies {
-    Lwjgl {
-      version.latest
-      implementation(Preset.everything)
-    }
+plugins {
+    id("org.lwjgl.plugin") version "0.0.17"
 }
-
+dependencies {
+    Lwjgl { implementation(Preset.everything) }
+}
+```
+The default version is the latest stable, that is 3.2.3, if you want to override this
+```kotlin
+Lwjgl { version = ".." }
+```
+Or you can use the available DSL accessors
+```kotlin
+Lwjgl { 
+   release.`3_2_3` // down to 3.1.0
+   snapshot
+}
 ```
