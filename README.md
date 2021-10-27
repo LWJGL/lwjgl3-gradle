@@ -99,7 +99,7 @@ dependencies {
     Lwjgl { implementation(Preset.everything) }
 }
 ```
-The default version is the latest stable, that is 3.2.3, if you want to override this
+The default version is the latest stable, that is `3.2.3`, if you want to override this
 ```kotlin
 Lwjgl { version = ".." }
 ```
