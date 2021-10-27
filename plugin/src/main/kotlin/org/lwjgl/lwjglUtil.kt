@@ -39,7 +39,7 @@ object Lwjgl {
 
     private fun DependencyHandler.implementation(test: Boolean, module: Module) {
         var config = if (test) "testImplementation" else "implementation"
-        add(config, "$group:${module.artifact}")
+        add(config, "$group:${module.artifact}:$version")
         if (module.hasNative) {
             config = if (test) "testRuntimeOnly" else "runtimeOnly"
             if (allNatives)
