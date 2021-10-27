@@ -128,4 +128,4 @@ You can of course pass the wished `Module`s directly
 ```kotlin
 Lwjgl { implementation(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
 ```
-`core` can be skipped because it's added by default
+`core` may be skipped since it's added by default
