@@ -1,6 +1,6 @@
-package main
+package org.lwjgl
 
-import main.Lwjgl.Module.*
+import org.lwjgl.Lwjgl.Module.*
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.internal.os.OperatingSystem.*
 import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
