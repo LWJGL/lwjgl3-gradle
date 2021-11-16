@@ -10,7 +10,7 @@ object Lwjgl {
     val release = Release
     val snapshot = Snapshot
     val group = "org.lwjgl"
-    var version = "3.2.3"
+    var version = "3.3.0"
     var allNatives = false
 
     operator fun invoke(block: Lwjgl.() -> Unit) = Lwjgl.block()
@@ -60,7 +60,6 @@ object Lwjgl {
         bgfx,
         bullet,
         cuda(false),
-        driftfx,
         egl(false),
         glfw,
         jawt(false),
@@ -137,7 +136,11 @@ object Lwjgl {
 object Release {
     val latest: Unit
         get() {
-            `3_2_3`
+            `3_3_0`
+        }
+    val `3_3_0`: Unit
+        get() {
+            Lwjgl.version = "3.2.3"
         }
     val `3_2_3`: Unit
         get() {
