@@ -92,12 +92,42 @@ dependencies {
 becomes
 
 ```kotlin
-
-dependencies {
-    Lwjgl {
-      version.latest
-      implementation(Preset.everything)
-    }
+plugins {
+    id("org.lwjgl.plugin") version "0.0.17"
 }
-
+dependencies {
+    Lwjgl { implementation(Preset.everything) }
+}
 ```
+The corresponding natives will be loaded under the hood
+
+The default version is the latest stable, that is `3.2.3`, if you want to override this
+```kotlin
+Lwjgl { version = ".." }
+```
+Or you can use the available DSL accessors
+```kotlin
+Lwjgl { 
+   release.`3_2_3` // down to 3.1.0
+   snapshot
+}
+```
+
+`Preset`s are `ArrayList`s in oder to give the option to modify them as you wish
+
+```kotlin
+    enum class Preset(val modules: ArrayList<Module>) {
+        none(arrayListOf<Module>()),
+        everything(Module.values().toCollection(ArrayList())),
+        gettingStarted(arrayListOf(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan)),
+        minimalOpenGL(arrayListOf(core, assimp, glfw, openal, opengl, stb)),
+        minimalOpenGLES(arrayListOf(core, assimp, egl, glfw, openal, opengles, stb)),
+        minimalVulkan(arrayListOf(core, assimp, glfw, openal, stb, vulkan))
+    }
+```
+
+You can of course pass the wished `Module`s directly
+```kotlin
+Lwjgl { implementation(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
+```
+`core` may be skipped since it's added by default
