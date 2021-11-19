@@ -140,7 +140,7 @@ object Release {
         }
     val `3_3_0`: Unit
         get() {
-            Lwjgl.version = "3.2.3"
+            Lwjgl.version = "3.3.0"
         }
     val `3_2_3`: Unit
         get() {
