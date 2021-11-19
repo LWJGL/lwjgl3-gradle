@@ -8,7 +8,7 @@ This:
 
 ```kotlin
 
-val lwjglVersion = "3.2.3"
+val lwjglVersion = "3.3.0"
 val lwjglNatives = "natives-linux"
 
 repositories {
@@ -93,7 +93,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.17"
+    id("org.lwjgl.plugin") version "0.0.18"
 }
 dependencies {
     Lwjgl { implementation(Preset.everything) }
@@ -101,14 +101,14 @@ dependencies {
 ```
 The corresponding natives will be loaded under the hood
 
-The default version is the latest stable, that is `3.2.3`, if you want to override this
+The default version is the latest stable, that is `3.3.0`, if you want to override this
 ```kotlin
 Lwjgl { version = ".." }
 ```
 Or you can use the available DSL accessors
 ```kotlin
 Lwjgl { 
-   release.`3_2_3` // down to 3.1.0
+   release.`3_3_0` // down to 3.1.0
    snapshot
 }
 ```
