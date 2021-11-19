@@ -35,7 +35,7 @@ dependencies {
 }
 
 group = "org.lwjgl"
-version = "0.0.18"
+version = "0.0.19"
 
 publishing {
     publications.create<MavenPublication>("maven") {
