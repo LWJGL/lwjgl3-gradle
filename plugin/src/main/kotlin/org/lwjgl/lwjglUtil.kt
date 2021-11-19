@@ -113,16 +113,17 @@ object Lwjgl {
     }
 
     val native by lazy {
-        val os = System.getProperty("os.arch")
-        val aarch64 = os.startsWith("aarch64")
-        "natives-" + when (current()) {
-            LINUX -> "linux" + when {
-                os.startsWith("arm") || aarch64 -> '-' + if ("64" in os || os.startsWith("armv8")) "arm64" else "arm32"
+        val arch = System.getProperty("os.arch")
+        val aarch64 = arch.startsWith("aarch64")
+        val os = current()
+        "natives-" + when {
+            os.isLinux -> "linux" + when {
+                arch.startsWith("arm") || aarch64 -> '-' + if ("64" in arch || arch.startsWith("armv8")) "arm64" else "arm32"
                 else -> ""
             }
-            MAC_OS -> "macos" + if (aarch64) "-arm64" else ""
-            WINDOWS -> "windows" + when {
-                "64" in os -> if (aarch64) "-arm64" else ""
+            os.isMacOsX -> "macos" + if (aarch64) "-arm64" else ""
+            os.isWindows -> "windows" + when {
+                "64" in arch -> if (aarch64) "-arm64" else ""
                 else -> "-x86"
             }
             else -> error("Unrecognized or unsupported Operating system. Please set `lwjglNatives` manually")

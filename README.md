@@ -93,7 +93,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.18"
+    id("org.lwjgl.plugin") version "0.0.20"
 }
 dependencies {
     Lwjgl { implementation(Preset.everything) }
