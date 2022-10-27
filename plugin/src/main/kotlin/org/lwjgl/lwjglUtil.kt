@@ -46,10 +46,10 @@ object lwjgl {
             if (allPlatforms)
                 for (platform in platforms)
                     addExternalModuleDependencyTo(this, config, group, module.artifact, version,
-                                                  null, "native-$platform", null, null)
+                                                  null, "natives-$platform", null, null)
             else
                 addExternalModuleDependencyTo(this, config, group, module.artifact, version,
-                                              null, "native-$runningPlatform", null, null)
+                                              null, "natives-$runningPlatform", null, null)
         }
     }
 
