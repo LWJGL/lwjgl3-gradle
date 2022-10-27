@@ -135,13 +135,10 @@ object lwjgl {
                                                  "windows-arm64", "windows", "windows-x86")
 }
 
-fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
-fun KotlinDependencyHandler.testImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
-
+//fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
 fun KotlinDependencyHandler.lwjglImplementation(preset: lwjgl.Preset) = lwjglImplementation(preset.modules)
-fun KotlinDependencyHandler.testImplementation(preset: lwjgl.Preset) = lwjglImplementation(preset.modules)
 
-private fun KotlinDependencyHandler.lwjglImplementation(modules: Array<out lwjgl.Module>) {
+private fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) {
     // core
     if (core !in modules)
         implementation(core)
