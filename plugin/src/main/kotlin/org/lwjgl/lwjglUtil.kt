@@ -136,17 +136,17 @@ object lwjgl {
 }
 
 //fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
-fun KotlinDependencyHandler.lwjglImplementation(preset: lwjgl.Preset) = lwjglImplementation(preset.modules)
+fun KotlinDependencyHandler.lwjglImplementation(preset: lwjgl.Preset) = impl(preset.modules)
 
 fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) {
     // core
     if (core !in modules)
-        implementation(core)
+        impl(core)
     for (module in modules)
-        implementation(module)
+        impl(module)
 }
 
-private fun KotlinDependencyHandler.lwjglImplementation(modules: Collection<lwjgl.Module>) {
+private fun KotlinDependencyHandler.impl(modules: Collection<lwjgl.Module>) {
     // core
     if (core !in modules)
         implementation(core)
@@ -154,7 +154,7 @@ private fun KotlinDependencyHandler.lwjglImplementation(modules: Collection<lwjg
         implementation(module)
 }
 
-private fun KotlinDependencyHandler.lwjglImplementation(module: lwjgl.Module) {
+private fun KotlinDependencyHandler.impl(module: lwjgl.Module) {
     implementation("${lwjgl.group}:${module.artifact}:${lwjgl.version}")
     if (module.hasNative)
         if (lwjgl.allPlatforms)
