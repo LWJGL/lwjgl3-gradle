@@ -10,8 +10,8 @@ object Lwjgl {
     val release = Release
     val snapshot = Snapshot
     val group = "org.lwjgl"
-    var version = "3.3.0"
-    var allNatives = false
+    var version = "3.3.1"
+    var allPlatforms = false
 
     operator fun invoke(block: Lwjgl.() -> Unit) = Lwjgl.block()
 
@@ -42,13 +42,13 @@ object Lwjgl {
         add(config, "$group:${module.artifact}:$version")
         if (module.hasNative) {
             config = if (test) "testRuntimeOnly" else "runtimeOnly"
-            if (allNatives)
-                for (native in allNative)
+            if (allPlatforms)
+                for (platform in platforms)
                     addExternalModuleDependencyTo(this, config, group, module.artifact, version,
-                                                  null, native, null, null)
+                                                  null, "native-$platform", null, null)
             else
                 addExternalModuleDependencyTo(this, config, group, module.artifact, version,
-                                              null, native, null, null)
+                                              null, "native-$runningPlatform", null, null)
         }
     }
 
@@ -112,7 +112,7 @@ object Lwjgl {
         minimalVulkan(arrayListOf(core, assimp, glfw, openal, stb, vulkan))
     }
 
-    val native by lazy {
+    val runningPlatform: String by lazy {
         val arch = System.getProperty("os.arch")
         val aarch64 = arch.startsWith("aarch64")
         val os = current()
@@ -129,15 +129,19 @@ object Lwjgl {
             else -> error("Unrecognized or unsupported Operating system. Please set `lwjglNatives` manually")
         }
     }
-    private val allNative = listOf("linux-arm64", "linux-arm32", "linux",
-                                   "macos-arm64", "macos",
-                                   "windows-arm64", "windows", "windows-x86")
+    private val platforms: List<String> = listOf("linux-arm64", "linux-arm32", "linux",
+                                                 "macos-arm64", "macos",
+                                                 "windows-arm64", "windows", "windows-x86")
 }
 
 object Release {
     val latest: Unit
         get() {
-            `3_3_0`
+            `3_3_1`
+        }
+    val `3_3_1`: Unit
+        get() {
+            Lwjgl.version = "3.3.1"
         }
     val `3_3_0`: Unit
         get() {
