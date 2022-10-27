@@ -53,39 +53,6 @@ object lwjgl {
         }
     }
 
-    fun KotlinDependencyHandler.implementation(vararg modules: Module) = implementation(modules, "")
-    fun KotlinDependencyHandler.testImplementation(vararg modules: Module) = implementation(modules, "")
-
-    fun KotlinDependencyHandler.implementation(preset: Preset) = implementation(preset.modules, "")
-    fun KotlinDependencyHandler.testImplementation(preset: Preset) = implementation(preset.modules, "")
-
-    private fun KotlinDependencyHandler.implementation(modules: Array<out Module>, dummy: String) {
-        // core
-        if (core !in modules)
-            implementation(core)
-        for (module in modules)
-            implementation(module)
-    }
-
-    private fun KotlinDependencyHandler.implementation(modules: Collection<Module>, dummy: String) {
-        // core
-        if (core !in modules)
-            implementation(core)
-        for (module in modules)
-            implementation(module)
-    }
-
-    private fun KotlinDependencyHandler.implementation(module: Module, dummy: String) {
-        this.implementation("$group:${module.artifact}:$version")
-        if (module.hasNative) {
-            if (allPlatforms)
-                for (platform in platforms)
-                    this.runtimeOnly("$group:${module.artifact}:$version:native-$platform")
-            else
-                this.runtimeOnly("$group:${module.artifact}:$version:native-$runningPlatform")
-        }
-    }
-
     enum class Module(val hasNative: Boolean = true) {
         /** This can be skipped */
         core,
@@ -163,9 +130,41 @@ object lwjgl {
             else -> error("Unrecognized or unsupported Operating system. Please set `lwjglNatives` manually")
         }
     }
-    private val platforms: List<String> = listOf("linux-arm64", "linux-arm32", "linux",
+    val platforms: List<String> = listOf("linux-arm64", "linux-arm32", "linux",
                                                  "macos-arm64", "macos",
                                                  "windows-arm64", "windows", "windows-x86")
+}
+
+fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
+fun KotlinDependencyHandler.testImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
+
+fun KotlinDependencyHandler.lwjglImplementation(preset: lwjgl.Preset) = lwjglImplementation(preset.modules)
+fun KotlinDependencyHandler.testImplementation(preset: lwjgl.Preset) = lwjglImplementation(preset.modules)
+
+private fun KotlinDependencyHandler.lwjglImplementation(modules: Array<out lwjgl.Module>) {
+    // core
+    if (core !in modules)
+        implementation(core)
+    for (module in modules)
+        implementation(module)
+}
+
+private fun KotlinDependencyHandler.lwjglImplementation(modules: Collection<lwjgl.Module>) {
+    // core
+    if (core !in modules)
+        implementation(core)
+    for (module in modules)
+        implementation(module)
+}
+
+private fun KotlinDependencyHandler.lwjglImplementation(module: lwjgl.Module) {
+    implementation("${lwjgl.group}:${module.artifact}:${lwjgl.version}")
+    if (module.hasNative)
+        if (lwjgl.allPlatforms)
+            for (platform in lwjgl.platforms)
+                runtimeOnly("${lwjgl.group}:${module.artifact}:${lwjgl.version}:native-$platform")
+        else
+            runtimeOnly("${lwjgl.group}:${module.artifact}:${lwjgl.version}:native-${lwjgl.runningPlatform}")
 }
 
 object Release {
