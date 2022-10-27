@@ -1,11 +1,12 @@
 package org.lwjgl
 
-import org.lwjgl.Lwjgl.Module.*
+import org.lwjgl.lwjgl.Module.*
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.internal.os.OperatingSystem.*
 import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
-object Lwjgl {
+object lwjgl {
 
     val release = Release
     val snapshot = Snapshot
@@ -13,7 +14,7 @@ object Lwjgl {
     var version = "3.3.1"
     var allPlatforms = false
 
-    operator fun invoke(block: Lwjgl.() -> Unit) = Lwjgl.block()
+    operator fun invoke(block: lwjgl.() -> Unit) = lwjgl.block()
 
     fun DependencyHandler.implementation(vararg modules: Module) = implementation(false, modules)
     fun DependencyHandler.testImplementation(vararg modules: Module) = implementation(true, modules)
@@ -49,6 +50,39 @@ object Lwjgl {
             else
                 addExternalModuleDependencyTo(this, config, group, module.artifact, version,
                                               null, "native-$runningPlatform", null, null)
+        }
+    }
+
+    fun KotlinDependencyHandler.implementation(vararg modules: Module) = implementation(modules, "")
+    fun KotlinDependencyHandler.testImplementation(vararg modules: Module) = implementation(modules, "")
+
+    fun KotlinDependencyHandler.implementation(preset: Preset) = implementation(preset.modules, "")
+    fun KotlinDependencyHandler.testImplementation(preset: Preset) = implementation(preset.modules, "")
+
+    private fun KotlinDependencyHandler.implementation(modules: Array<out Module>, dummy: String) {
+        // core
+        if (core !in modules)
+            implementation(core)
+        for (module in modules)
+            implementation(module)
+    }
+
+    private fun KotlinDependencyHandler.implementation(modules: Collection<Module>, dummy: String) {
+        // core
+        if (core !in modules)
+            implementation(core)
+        for (module in modules)
+            implementation(module)
+    }
+
+    private fun KotlinDependencyHandler.implementation(module: Module, dummy: String) {
+        this.implementation("$group:${module.artifact}:$version")
+        if (module.hasNative) {
+            if (allPlatforms)
+                for (platform in platforms)
+                    this.runtimeOnly("$group:${module.artifact}:$version:native-$platform")
+            else
+                this.runtimeOnly("$group:${module.artifact}:$version:native-$runningPlatform")
         }
     }
 
@@ -141,61 +175,61 @@ object Release {
         }
     val `3_3_1`: Unit
         get() {
-            Lwjgl.version = "3.3.1"
+            lwjgl.version = "3.3.1"
         }
     val `3_3_0`: Unit
         get() {
-            Lwjgl.version = "3.3.0"
+            lwjgl.version = "3.3.0"
         }
     val `3_2_3`: Unit
         get() {
-            Lwjgl.version = "3.2.3"
+            lwjgl.version = "3.2.3"
         }
     val `3_2_2`: Unit
         get() {
-            Lwjgl.version = "3.2.2"
+            lwjgl.version = "3.2.2"
         }
     val `3_2_1`: Unit
         get() {
-            Lwjgl.version = "3.2.1"
+            lwjgl.version = "3.2.1"
         }
     val `3_2_0`: Unit
         get() {
-            Lwjgl.version = "3.2.0"
+            lwjgl.version = "3.2.0"
         }
     val `3_1_6`: Unit
         get() {
-            Lwjgl.version = "3.1.6"
+            lwjgl.version = "3.1.6"
         }
     val `3_1_5`: Unit
         get() {
-            Lwjgl.version = "3.1.5"
+            lwjgl.version = "3.1.5"
         }
     val `3_1_4`: Unit
         get() {
-            Lwjgl.version = "3.1.4"
+            lwjgl.version = "3.1.4"
         }
     val `3_1_3`: Unit
         get() {
-            Lwjgl.version = "3.1.3"
+            lwjgl.version = "3.1.3"
         }
     val `3_1_2`: Unit
         get() {
-            Lwjgl.version = "3.1.2"
+            lwjgl.version = "3.1.2"
         }
     val `3_1_1`: Unit
         get() {
-            Lwjgl.version = "3.1.1"
+            lwjgl.version = "3.1.1"
         }
     val `3_1_0`: Unit
         get() {
-            Lwjgl.version = "3.1.0"
+            lwjgl.version = "3.1.0"
         }
 }
 
 object Snapshot {
     val `3_3_0`: Unit
         get() {
-            Lwjgl.version = "3.3.0-SNAPSHOT"
+            lwjgl.version = "3.3.0-SNAPSHOT"
         }
 }

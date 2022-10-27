@@ -32,10 +32,12 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation(kotlin("test-junit"))
+
+    implementation(kotlin("gradle-plugin", embeddedKotlinVersion))
 }
 
 group = "org.lwjgl"
-version = "0.0.21"
+version = "0.0.22"
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -56,7 +58,7 @@ gradlePlugin {
 pluginBundle {
     website = "https://github.com/LWJGL/lwjgl3-gradle"
     vcsUrl = "https://github.com/LWJGL/lwjgl3-gradle"
-    tags = listOf("lwjgl", "gradle", "dependency", "easy", "management")
+    tags = listOf("lwjgl", "dependency", "easy", "management")
 }
 
 tasks {
