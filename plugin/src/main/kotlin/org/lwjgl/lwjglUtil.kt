@@ -117,7 +117,7 @@ object lwjgl {
         val arch = System.getProperty("os.arch")
         val aarch64 = arch.startsWith("aarch64")
         val os = current()
-        "natives-" + when {
+        when {
             os.isLinux -> "linux" + when {
                 arch.startsWith("arm") || aarch64 -> '-' + if ("64" in arch || arch.startsWith("armv8")) "arm64" else "arm32"
                 else -> ""
@@ -159,9 +159,9 @@ private fun KotlinDependencyHandler.impl(module: lwjgl.Module) {
     if (module.hasNative)
         if (lwjgl.allPlatforms)
             for (platform in lwjgl.platforms)
-                runtimeOnly("${lwjgl.group}:${module.artifact}:${lwjgl.version}:native-$platform")
+                runtimeOnly("${lwjgl.group}:${module.artifact}:${lwjgl.version}:natives-$platform")
         else
-            runtimeOnly("${lwjgl.group}:${module.artifact}:${lwjgl.version}:native-${lwjgl.runningPlatform}")
+            runtimeOnly("${lwjgl.group}:${module.artifact}:${lwjgl.version}:natives-${lwjgl.runningPlatform}")
 }
 
 object Release {
