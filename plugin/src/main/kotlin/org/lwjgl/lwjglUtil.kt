@@ -138,7 +138,7 @@ object lwjgl {
 //fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) = lwjglImplementation(modules)
 fun KotlinDependencyHandler.lwjglImplementation(preset: lwjgl.Preset) = lwjglImplementation(preset.modules)
 
-private fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) {
+fun KotlinDependencyHandler.lwjglImplementation(vararg modules: lwjgl.Module) {
     // core
     if (core !in modules)
         implementation(core)
