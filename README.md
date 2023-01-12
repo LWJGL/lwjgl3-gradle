@@ -93,7 +93,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.20"
+    id("org.lwjgl.plugin") version "0.0.30"
 }
 dependencies {
     Lwjgl { implementation(Preset.everything) }
@@ -112,8 +112,13 @@ Or you can use the available DSL accessors
 import org.lwjgl.lwjgl
 
 lwjgl { 
-   release.`3_3_0` // down to 3.1.0
+   release.`3_3_1` // down to 3.1.0
    snapshot
+}
+```
+```kotlin
+lwjgl {
+   snapshot.`3_3_2`
 }
 ```
 
