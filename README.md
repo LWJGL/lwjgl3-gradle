@@ -96,7 +96,7 @@ plugins {
     id("org.lwjgl.plugin") version "0.0.30"
 }
 dependencies {
-    Lwjgl { implementation(Preset.everything) }
+    lwjgl { implementation(Preset.everything) }
 }
 ```
 The corresponding natives will be loaded under the hood
@@ -137,6 +137,6 @@ lwjgl {
 
 You can of course pass the wished `Module`s directly
 ```kotlin
-Lwjgl { implementation(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
+lwjgl { implementation(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
 ```
 `core` may be skipped since it's added by default
