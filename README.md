@@ -113,9 +113,9 @@ import org.lwjgl.lwjgl
 
 lwjgl { 
    release.`3_3_1` // down to 3.1.0
-   snapshot
 }
 ```
+or
 ```kotlin
 lwjgl {
    snapshot.`3_3_2`
