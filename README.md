@@ -8,7 +8,7 @@ This:
 
 ```kotlin
 
-val lwjglVersion = "3.3.0"
+val lwjglVersion = "3.3.1"
 val lwjglNatives = "natives-linux"
 
 repositories {
