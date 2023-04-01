@@ -9,7 +9,7 @@ plugins {
 
     `kotlin-dsl`
 
-    id("com.gradle.plugin-publish") version "1.0.0"
+    id("com.gradle.plugin-publish") version "1.1.0"
 
     `maven-publish`
 }
@@ -37,7 +37,7 @@ dependencies {
 }
 
 group = "org.lwjgl"
-version = "0.0.30"
+version = "0.0.32"
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -46,19 +46,16 @@ publishing {
 }
 
 gradlePlugin {
+    website.set("https://github.com/LWJGL/lwjgl3-gradle")
+    vcsUrl.set("https://github.com/LWJGL/lwjgl3-gradle")
     // Define the plugin
     plugins.create("lwjgl") {
         id = "org.lwjgl.plugin"
+        implementationClass = "org.lwjgl.LwjglPlugin"
         displayName = "Lwjgl Gradle util"
         description = "Easier Lwjgl dependency management"
-        implementationClass = "org.lwjgl.LwjglPlugin"
+        tags.set(listOf("lwjgl", "dependency", "easy", "management"))
     }
-}
-
-pluginBundle {
-    website = "https://github.com/LWJGL/lwjgl3-gradle"
-    vcsUrl = "https://github.com/LWJGL/lwjgl3-gradle"
-    tags = listOf("lwjgl", "dependency", "easy", "management")
 }
 
 tasks {

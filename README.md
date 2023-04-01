@@ -8,11 +8,12 @@ This:
 
 ```kotlin
 
-val lwjglVersion = "3.3.0"
+val lwjglVersion = "3.3.2-SNAPSHOT"
 val lwjglNatives = "natives-linux"
 
 repositories {
 	mavenCentral()
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
@@ -93,45 +94,40 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.20"
+    id("org.lwjgl.plugin") version "0.0.32"
+}
+repositories {
+    mavenCentral()
+    sonatype()
 }
 dependencies {
-    Lwjgl { implementation(Preset.everything) }
-}
-```
-The corresponding natives will be loaded under the hood
-
-The default version is the latest stable, that is `3.3.0`, if you want to override this
-```kotlin
-import org.lwjgl.lwjgl
-
-lwjgl { version = ".." }
-```
-Or you can use the available DSL accessors
-```kotlin
-import org.lwjgl.lwjgl
-
-lwjgl { 
-   release.`3_3_0` // down to 3.1.0
-   snapshot
-}
-```
-
-`Preset`s are `ArrayList`s in oder to give the option to modify them as you wish
-
-```kotlin
-    enum class Preset(val modules: ArrayList<Module>) {
-        none(arrayListOf<Module>()),
-        everything(Module.values().toCollection(ArrayList())),
-        gettingStarted(arrayListOf(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan)),
-        minimalOpenGL(arrayListOf(core, assimp, glfw, openal, opengl, stb)),
-        minimalOpenGLES(arrayListOf(core, assimp, egl, glfw, openal, opengles, stb)),
-        minimalVulkan(arrayListOf(core, assimp, glfw, openal, stb, vulkan))
+    lwjgl {
+        version = Snapshot.`3_3_2` // default to Release.latest, that is Release.`3_3_1`
+        implementation(Preset.everything) 
     }
+}
+```
+The corresponding natives will be loaded under the hood for all the modules which need them.
+By default, only the natives of the running platform will be included. If you want to include them all:
+```kotlin
+dependencies {
+    lwjgl {
+        version = Snapshot.`3_3_2` // default to Release.latest, that is Release.`3_3_1`
+        nativesForEveryPlatform = true
+        implementation(Preset.everything)
+    }
+}
+```
+
+The default version is the latest stable, that is `3.3.2`, if you want to override this
+```kotlin
+lwjgl {
+    version = Release.`3_3_0` // down to 3.1.0
+}
 ```
 
 You can of course pass the wished `Module`s directly
 ```kotlin
-Lwjgl { implementation(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
+lwjgl { implementation(assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
 ```
-`core` may be skipped since it's added by default
+`core` may be omitted since it's included by default
