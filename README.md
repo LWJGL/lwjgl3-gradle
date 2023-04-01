@@ -98,7 +98,7 @@ plugins {
 }
 repositories {
     mavenCentral()
-    sonatype()
+    sonatype() // plugin accessor
 }
 dependencies {
     lwjgl {
