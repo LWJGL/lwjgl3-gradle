@@ -12,7 +12,7 @@ val lwjglVersion = "3.3.2-SNAPSHOT"
 val lwjglNatives = "natives-linux"
 
 repositories {
-	mavenCentral()
+    mavenCentral()
     maven("https://oss.sonatype.org/content/repositories/snapshots/")
 }
 
