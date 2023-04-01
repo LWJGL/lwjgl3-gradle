@@ -20,6 +20,8 @@ object Lwjgl {
 
     operator fun invoke(block: Lwjgl.() -> Unit) = Lwjgl.block()
 
+    fun DependencyHandler.implementation(modules: List<Module>) = implementation(false, modules)
+    fun DependencyHandler.testImplementation(modules: List<Module>) = implementation(true, modules)
     fun DependencyHandler.implementation(vararg modules: Module) = implementation(false, modules)
     fun DependencyHandler.testImplementation(vararg modules: Module) = implementation(true, modules)
 
@@ -121,7 +123,9 @@ object Lwjgl {
         gettingStarted(listOf(core, assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan)),
         minimalOpenGL(listOf(core, assimp, glfw, openal, opengl, stb)),
         minimalOpenGLES(listOf(core, assimp, egl, glfw, openal, opengles, stb)),
-        minimalVulkan(listOf(core, assimp, glfw, openal, stb, vulkan))
+        minimalVulkan(listOf(core, assimp, glfw, openal, stb, vulkan));
+
+        operator fun plus(module: Module) = modules + module
     }
 
     val runningPlatform: String by lazy {

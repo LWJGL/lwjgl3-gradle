@@ -94,7 +94,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.32"
+    id("org.lwjgl.plugin") version "0.0.33"
 }
 repositories {
     mavenCentral()
@@ -108,16 +108,8 @@ dependencies {
 }
 ```
 The corresponding natives will be loaded under the hood for all the modules which need them.
-By default, only the natives of the running platform will be included. If you want to include them all:
-```kotlin
-dependencies {
-    lwjgl {
-        version = Snapshot.`3_3_2` // default to Release.latest, that is Release.`3_3_1`
-        nativesForEveryPlatform = true
-        implementation(Preset.everything)
-    }
-}
-```
+By default, only the natives of the running platform will be included. If you want to include them all, set 
+`nativesForEveryPlatform = true`
 
 The default version is the latest stable, that is `3.3.2`, if you want to override this
 ```kotlin
@@ -131,3 +123,10 @@ You can of course pass the wished `Module`s directly
 lwjgl { implementation(assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par, stb, vulkan) }
 ```
 `core` may be omitted since it's included by default
+
+You can also extend presets with specific modules:
+```kotlin
+    lwjgl {
+        implementation(Lwjgl.Preset.gettingStarted + jemalloc)
+    }
+```
