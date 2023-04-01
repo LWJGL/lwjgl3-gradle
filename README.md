@@ -130,3 +130,8 @@ You can also extend presets with specific modules:
         implementation(Lwjgl.Preset.gettingStarted + jemalloc)
     }
 ```
+
+Accessor addons are available as well (they revert to simple `String`s, so you can use them also outside `lwjgl` lambda):
+```kotlin
+implementation(Lwjgl.Addons.`joml 1_10_5`)
+```
