@@ -98,7 +98,7 @@ plugins {
 }
 repositories {
     mavenCentral()
-    sonatype()
+    sonatype() // plugin accessor
 }
 dependencies {
     lwjgl {
@@ -126,9 +126,9 @@ lwjgl { implementation(assimp, bgfx, glfw, nanovg, nuklear, openal, opengl, par,
 
 You can also extend presets with specific modules:
 ```kotlin
-    lwjgl {
-        implementation(Lwjgl.Preset.gettingStarted + jemalloc)
-    }
+lwjgl {
+    implementation(Lwjgl.Preset.gettingStarted + jemalloc)
+}
 ```
 
 Accessor addons are available as well (they revert to simple `String`s, so you can use them also outside `lwjgl` lambda):
