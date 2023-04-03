@@ -197,6 +197,7 @@ interface Version {
 }
 
 enum class Release : Version {
+    `3_3_2`,
     `3_3_1`,
     `3_3_0`,
     `3_2_3`,
@@ -220,6 +221,7 @@ enum class Release : Version {
 }
 
 enum class Snapshot : Version {
+    `3_3_3`,
     `3_3_2`,
     `3_3_1`,
     `3_3_0`,
