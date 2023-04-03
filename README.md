@@ -94,7 +94,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.33"
+    id("org.lwjgl.plugin") version "0.0.34"
 }
 repositories {
     mavenCentral()
@@ -102,7 +102,7 @@ repositories {
 }
 dependencies {
     lwjgl {
-        version = Snapshot.`3_3_2` // default to Release.latest, that is Release.`3_3_1`
+        version = Snapshot.`3_3_2` // default to Release.latest, that is Release.`3_3_2`
         implementation(Preset.everything) 
     }
 }
