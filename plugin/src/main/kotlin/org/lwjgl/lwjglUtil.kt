@@ -181,13 +181,13 @@ private fun KotlinDependencyHandler.impl(modules: Collection<Lwjgl.Module>) {
 }
 
 private fun KotlinDependencyHandler.impl(module: Lwjgl.Module) {
-    implementation("${Lwjgl.group}:${module.artifact}:${Lwjgl.version}")
+    implementation("${Lwjgl.group}:${module.artifact}:${Lwjgl.version.string}")
     if (module.hasNative)
         if (Lwjgl.nativesForEveryPlatform)
             for (platform in Lwjgl.platforms)
-                runtimeOnly("${Lwjgl.group}:${module.artifact}:${Lwjgl.version}:natives-$platform")
+                runtimeOnly("${Lwjgl.group}:${module.artifact}:${Lwjgl.version.string}:natives-$platform")
         else
-            runtimeOnly("${Lwjgl.group}:${module.artifact}:${Lwjgl.version}:natives-${Lwjgl.runningPlatform}")
+            runtimeOnly("${Lwjgl.group}:${module.artifact}:${Lwjgl.version.string}:natives-${Lwjgl.runningPlatform}")
 }
 
 interface Version {
