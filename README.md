@@ -102,7 +102,7 @@ repositories {
 }
 dependencies {
     lwjgl {
-        version = Snapshot.`3_3_4` // default to Release.latest, that is Release.`3_3_4`
+        version = Snapshot.`3․3․4` // default to `Release.latest`, that is Release.`3․3․4`
         implementation(Preset.everything) 
     }
 }
@@ -114,7 +114,7 @@ By default, only the natives of the running platform will be included. If you wa
 The default version is the latest stable, that is `3.3.4`, if you want to override this
 ```kotlin
 lwjgl {
-    version = Release.`3_3_0` // down to 3.1.0
+    version = Release.`3․3․0` // down to 3.1.0
 }
 ```
 
@@ -133,5 +133,5 @@ lwjgl {
 
 Accessor addons are available as well (they revert to simple `String`s, so you can use them also outside `lwjgl` lambda):
 ```kotlin
-implementation(Lwjgl.Addons.`joml 1_10_5`)
+implementation(Lwjgl.Addons.`joml 1․10․5`)
 ```
