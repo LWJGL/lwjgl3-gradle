@@ -8,7 +8,7 @@ This:
 
 ```kotlin
 
-val lwjglVersion = "3.3.2-SNAPSHOT"
+val lwjglVersion = "3.3.4-SNAPSHOT"
 val lwjglNatives = "natives-linux"
 
 repositories {
@@ -94,7 +94,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.34"
+    id("org.lwjgl.plugin") version "0.0.35"
 }
 repositories {
     mavenCentral()
@@ -102,7 +102,7 @@ repositories {
 }
 dependencies {
     lwjgl {
-        version = Snapshot.`3_3_2` // default to Release.latest, that is Release.`3_3_2`
+        version = Snapshot.`3_3_4` // default to Release.latest, that is Release.`3_3_4`
         implementation(Preset.everything) 
     }
 }
@@ -111,7 +111,7 @@ The corresponding natives will be loaded under the hood for all the modules whic
 By default, only the natives of the running platform will be included. If you want to include them all, set 
 `nativesForEveryPlatform = true`
 
-The default version is the latest stable, that is `3.3.2`, if you want to override this
+The default version is the latest stable, that is `3.3.4`, if you want to override this
 ```kotlin
 lwjgl {
     version = Release.`3_3_0` // down to 3.1.0

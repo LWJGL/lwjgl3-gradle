@@ -154,7 +154,8 @@ object Lwjgl {
     )
 
     object Addons {
-        val `joml 1_10_5` = "org.joml:joml:1.10.5"
+        val `joml 1_10_7` = "org.joml:joml:1.10.7"
+        val `joml_primitives 1_10_0` = "org.joml:joml-primitives:1.10.0"
         val `awt 0_1_8` = "org.lwjglx:lwjgl3-awt:0.1.8"
         val `steamworks4j 1_9_0` = "com.code-disaster.steamworks4j:steamworks4j:1.9.0"
         val `steamworks4j-server 1_9_0` = "com.code-disaster.steamworks4j:steamworks4j-server:1.9.0"
@@ -197,6 +198,8 @@ interface Version {
 }
 
 enum class Release : Version {
+    `3_3_4`,
+    `3_3_3`,
     `3_3_2`,
     `3_3_1`,
     `3_3_0`,
@@ -221,6 +224,7 @@ enum class Release : Version {
 }
 
 enum class Snapshot : Version {
+    `3_3_4`,
     `3_3_3`,
     `3_3_2`,
     `3_3_1`,
