@@ -197,6 +197,9 @@ interface Version {
         get() = string[0].digitToInt().toUInt() * 100u + string[2].digitToInt().toUInt() * 10u + string[4].digitToInt().toUInt()
 }
 
+// let us cheat with the "One Dot Leader" to have a point-like char in the name
+// https://www.compart.com/en/unicode/U+2024
+val oneDotLeader = '․'
 enum class Release : Version {
     `3․3․4`,
     `3․3․3`,
@@ -216,7 +219,7 @@ enum class Release : Version {
     `3․1․0`;
 
     override val string: String
-        get() = name.replace('_', '.')
+        get() = name.replace(oneDotLeader, '.')
 
     companion object {
         val latest = values().first()
@@ -242,10 +245,10 @@ enum class Snapshot : Version {
     `3․1․0`;
 
     override val string: String
-        get() = name.replace('_', '.') + "-SNAPSHOT"
+        get() = name.replace(oneDotLeader, '.') + "-SNAPSHOT"
 
     companion object {
-        val latest = Release.values().first()
+        val latest = values().first()
     }
 }
 
