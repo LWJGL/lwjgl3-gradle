@@ -61,54 +61,54 @@ object Lwjgl {
         }
     }
 
-    enum class Module(val hasNative: Boolean = true, val since: Version = Release.`3_1_0`) {
+    enum class Module(val hasNative: Boolean = true, val since: Version = Release.`3․1․0`) {
         /** This can be skipped */
         core,
 
-        assimp(since = Release.`3_1_1`),
+        assimp(since = Release.`3․1․1`),
         bgfx,
-        cuda(false, Release.`3_2_1`),
+        cuda(false, Release.`3․2․1`),
         egl(false),
-        fmod(false, Snapshot.`3_3_2`),
-        freetype(since = Snapshot.`3_3_2`),
+        fmod(false, Snapshot.`3․3․2`),
+        freetype(since = Snapshot.`3․3․2`),
         glfw,
-        harfbuzz(since = Snapshot.`3_3_2`),
-        hwloc(since = Snapshot.`3_3_2`),
+        harfbuzz(since = Snapshot.`3․3․2`),
+        hwloc(since = Snapshot.`3․3․2`),
         jawt(false),
         jemalloc,
-        ktx(since = Snapshot.`3_3_2`),
-        libdivide(since = Release.`3_2_1`),
-        llvm(since = Release.`3_2_1`),
+        ktx(since = Snapshot.`3․3․2`),
+        libdivide(since = Release.`3․2․1`),
+        llvm(since = Release.`3․2․1`),
         lmdb,
-        lz4(since = Release.`3_1_4`),
-        meow(since = Release.`3_2_1`),
-        meshoptimizer(since = Release.`3_3_0`),
+        lz4(since = Release.`3․1․4`),
+        meow(since = Release.`3․2․1`),
+        meshoptimizer(since = Release.`3․3․0`),
         nanovg,
         nfd,
         nuklear,
-        odbc(false, Release.`3_1_4`),
+        odbc(false, Release.`3․1․4`),
         openal,
         opencl(false),
         opengl,
         opengles,
-        openvr(since = Release.`3_1_2`),
-        openxr(since = Release.`3_3_1`),
-        opus(since = Release.`3_2_1`),
+        openvr(since = Release.`3․1․2`),
+        openxr(since = Release.`3․3․1`),
+        opus(since = Release.`3․2․1`),
         par,
-        remotery(since = Release.`3_1_4`),
-        rpmalloc(since = Release.`3_1_3`),
-        shaderc(since = Release.`3_2_3`),
-        spvc(since = Release.`3_3_0`),
+        remotery(since = Release.`3․1․4`),
+        rpmalloc(since = Release.`3․1․3`),
+        shaderc(since = Release.`3․2․3`),
+        spvc(since = Release.`3․3․0`),
         sse,
         stb,
-        tinyexr(since = Release.`3_1_2`),
+        tinyexr(since = Release.`3․1․2`),
         tinyfd,
-        tootle(since = Release.`3_1_5`),
-        vma(since = Release.`3_2_0`),
+        tootle(since = Release.`3․1․5`),
+        vma(since = Release.`3․2․0`),
         vulkan(false),
         xxhash,
-        yoga(since = Release.`3_1_2`),
-        zstd(since = Release.`3_1_4`);
+        yoga(since = Release.`3․1․2`),
+        zstd(since = Release.`3․1․4`);
 
         val artifact: String
             get() = when (this) {
@@ -154,11 +154,11 @@ object Lwjgl {
     )
 
     object Addons {
-        val `joml 1_10_7` = "org.joml:joml:1.10.7"
-        val `joml_primitives 1_10_0` = "org.joml:joml-primitives:1.10.0"
-        val `awt 0_1_8` = "org.lwjglx:lwjgl3-awt:0.1.8"
-        val `steamworks4j 1_9_0` = "com.code-disaster.steamworks4j:steamworks4j:1.9.0"
-        val `steamworks4j-server 1_9_0` = "com.code-disaster.steamworks4j:steamworks4j-server:1.9.0"
+        val `joml 1․10․7` = "org.joml:joml:1.10.7"
+        val `joml-primitives 1․10․0` = "org.joml:joml-primitives:1.10.0"
+        val `awt 0․1․8` = "org.lwjglx:lwjgl3-awt:0.1.8"
+        val `steamworks4j 1․9․0` = "com.code-disaster.steamworks4j:steamworks4j:1.9.0"
+        val `steamworks4j-server 1․9․0` = "com.code-disaster.steamworks4j:steamworks4j-server:1.9.0"
     }
 }
 
@@ -198,22 +198,22 @@ interface Version {
 }
 
 enum class Release : Version {
-    `3_3_4`,
-    `3_3_3`,
-    `3_3_2`,
-    `3_3_1`,
-    `3_3_0`,
-    `3_2_3`,
-    `3_2_2`,
-    `3_2_1`,
-    `3_2_0`,
-    `3_1_6`,
-    `3_1_5`,
-    `3_1_4`,
-    `3_1_3`,
-    `3_1_2`,
-    `3_1_1`,
-    `3_1_0`;
+    `3․3․4`,
+    `3․3․3`,
+    `3․3․2`,
+    `3․3․1`,
+    `3․3․0`,
+    `3․2․3`,
+    `3․2․2`,
+    `3․2․1`,
+    `3․2․0`,
+    `3․1․6`,
+    `3․1․5`,
+    `3․1․4`,
+    `3․1․3`,
+    `3․1․2`,
+    `3․1․1`,
+    `3․1․0`;
 
     override val string: String
         get() = name.replace('_', '.')
@@ -224,22 +224,22 @@ enum class Release : Version {
 }
 
 enum class Snapshot : Version {
-    `3_3_4`,
-    `3_3_3`,
-    `3_3_2`,
-    `3_3_1`,
-    `3_3_0`,
-    `3_2_3`,
-    `3_2_2`,
-    `3_2_1`,
-    `3_2_0`,
-    `3_1_6`,
-    `3_1_5`,
-    `3_1_4`,
-    `3_1_3`,
-    `3_1_2`,
-    `3_1_1`,
-    `3_1_0`;
+    `3․3․4`,
+    `3․3․3`,
+    `3․3․2`,
+    `3․3․1`,
+    `3․3․0`,
+    `3․2․3`,
+    `3․2․2`,
+    `3․2․1`,
+    `3․2․0`,
+    `3․1․6`,
+    `3․1․5`,
+    `3․1․4`,
+    `3․1․3`,
+    `3․1․2`,
+    `3․1․1`,
+    `3․1․0`;
 
     override val string: String
         get() = name.replace('_', '.') + "-SNAPSHOT"

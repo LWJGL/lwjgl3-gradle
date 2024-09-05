@@ -5,11 +5,11 @@ plugins {
     `java-gradle-plugin`
 
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version embeddedKotlinVersion
+    embeddedKotlin("jvm")
 
     `kotlin-dsl`
 
-    id("com.gradle.plugin-publish") version "1.1.0"
+    id("com.gradle.plugin-publish") version "1.2.2"
 
     `maven-publish`
 }
@@ -22,10 +22,10 @@ repositories {
 
 dependencies {
     // Align versions of all Kotlin components
-    implementation(platform(kotlin("bom", embeddedKotlinVersion)))
+    implementation(platform(kotlin("bom")))
 
     // Use the Kotlin JDK 8 standard library.
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib"))
 
     // Use the Kotlin test library.
     testImplementation(kotlin("test"))
@@ -33,7 +33,7 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation(kotlin("test-junit"))
 
-    implementation(kotlin("gradle-plugin", embeddedKotlinVersion))
+    implementation(kotlin("gradle-plugin"))
 }
 
 group = "org.lwjgl"
@@ -46,15 +46,15 @@ publishing {
 }
 
 gradlePlugin {
-    website.set("https://github.com/LWJGL/lwjgl3-gradle")
-    vcsUrl.set("https://github.com/LWJGL/lwjgl3-gradle")
+    website = "https://github.com/LWJGL/lwjgl3-gradle"
+    vcsUrl = "https://github.com/LWJGL/lwjgl3-gradle"
     // Define the plugin
     plugins.create("lwjgl") {
         id = "org.lwjgl.plugin"
         implementationClass = "org.lwjgl.LwjglPlugin"
         displayName = "Lwjgl Gradle util"
         description = "Easier Lwjgl dependency management"
-        tags.set(listOf("lwjgl", "dependency", "easy", "management"))
+        tags = listOf("lwjgl", "dependency", "easy", "management")
     }
 }
 
