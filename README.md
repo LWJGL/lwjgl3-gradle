@@ -8,7 +8,7 @@ This:
 
 ```kotlin
 
-val lwjglVersion = "3.3.4-SNAPSHOT"
+val lwjglVersion = "3.3.5-SNAPSHOT"
 val lwjglNatives = "natives-linux"
 
 repositories {
@@ -94,7 +94,7 @@ becomes
 
 ```kotlin
 plugins {
-    id("org.lwjgl.plugin") version "0.0.35"
+    id("org.lwjgl.plugin") version "0.0.36"
 }
 repositories {
     mavenCentral()
@@ -102,7 +102,7 @@ repositories {
 }
 dependencies {
     lwjgl {
-        version = Snapshot.`3․3․4` // default to `Release.latest`, that is Release.`3․3․4`
+        version = Snapshot.`3․3․5` // default to `Release.latest`, that is Release.`3․3․4`
         implementation(Preset.everything) 
     }
 }
@@ -133,5 +133,5 @@ lwjgl {
 
 Accessor addons are available as well (they revert to simple `String`s, so you can use them also outside `lwjgl` lambda):
 ```kotlin
-implementation(Lwjgl.Addons.`joml 1․10․5`)
+implementation(Lwjgl.Addons.`joml 1․10․7`)
 ```
